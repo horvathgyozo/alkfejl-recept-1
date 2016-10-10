@@ -1,105 +1,23 @@
 {% extends "layout" %}
 
 {% block content %}
+
+<h1>{{ name }}</h1>
+
 <div class="row">
 
+  {% for category in categories %}
   <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
+    <div class="panel panel-primary">
+      <div class="panel-heading">{{ category.name }}</div>
       <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
+        {% for recipe in category.topRecipes %}
+        <li class="list-group-item">{{ recipe.name }}</li>
+        {% endfor %}
       </ul>
     </div>
   </div>
-
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="col-lg-4 col-md-6 col-sm-12">
-    <div class="panel panel-default">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Levesek</div>
-
-      <!-- List group -->
-      <ul class="list-group">
-        <li class="list-group-item">Leves1</li>
-        <li class="list-group-item">Leves2</li>
-        <li class="list-group-item">Leves3</li>
-      </ul>
-    </div>
-  </div>
+  {% endfor %}
 
 </div>
 {% endblock %}
