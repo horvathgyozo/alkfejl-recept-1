@@ -69,6 +69,47 @@ class RecipeController {
     })
   }
 
+  * showEdit (request, response) {
+    const id = request.param('id');
+    const recipe = yield Recipe.find(id);
+    yield recipe.related('category').load();
+    // response.send(recipe.toJSON())
+    const categories = yield Category.all()
+
+    yield response.sendView('recipeEdit', {
+      categories: categories.toJSON(),
+      recipe: recipe.toJSON()
+    })
+  }
+
+  * doEdit (request, response) {
+    const recipeData = request.except('_csrf');
+
+    const rules = {
+      name: 'required',
+      ingredients: 'required',
+      instructions: 'required',
+      category_id: 'required'
+    };
+
+    const validation = yield Validator.validateAll(recipeData, rules)
+
+    if (validation.fails()) {
+      yield request
+        .withAll()
+        .andWith({errors: validation.messages()})
+        .flash()
+      response.redirect('back')
+      return
+    }
+
+    recipeData.user_id = 1
+    recipeData.id = 5
+    const recipe = yield Recipe.create(recipeData)
+    // response.send(recipe.toJSON())
+    response.redirect('/')
+  }
+
 }
 
 module.exports = RecipeController
