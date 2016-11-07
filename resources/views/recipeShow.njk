@@ -12,4 +12,10 @@
 {{ recipe.instructions }}
 </pre>
 
+{% if (recipe.user_id == user.id) %}
+<a href="/recipe/{{ recipe.id }}/edit" class="btn">
+    Szerkeszt
+</a>
+{% endif %}
+
 {% endblock %}
