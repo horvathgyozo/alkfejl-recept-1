@@ -52,7 +52,7 @@ class RecipeController {
       return
     }
 
-    recipeData.user_id = 1
+    recipeData.user_id = request.currentUser.id
     const recipe = yield Recipe.create(recipeData)
     // response.send(recipe.toJSON())
     response.redirect('/')
@@ -62,7 +62,7 @@ class RecipeController {
     const categories = yield Category.all()
     const id = request.param('id');
     const recipe = yield Recipe.find(id);
-    console.log(recipe.toJSON())
+    // console.log(recipe.toJSON())
 
     if (request.currentUser.id !== recipe.user_id) {
       response.unauthorized('Access denied.')
@@ -119,14 +119,19 @@ class RecipeController {
     // response.send(recipe.toJSON())
 
     yield response.sendView('recipeShow', {
-      recipe: recipe.toJSON(),
-      user: request.currentUser
+      recipe: recipe.toJSON()
     })
   }
 
   * doDelete (request, response) {
     const id = request.param('id');
     const recipe = yield Recipe.find(id);
+
+    if (request.currentUser.id !== recipe.user_id) {
+      response.unauthorized('Access denied.')
+      return
+    }
+
     yield recipe.delete()
     response.redirect('/')
   }

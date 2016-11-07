@@ -33,12 +33,19 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
           <ul class="nav navbar-nav">
               <li><a href="#">Receptek böngészése</a></li>
-              <li><a href="#">Meglátjuk!</a></li>
+              {% if currentUser %}
+              <li><a href="/recipe/create">Recept létrehozása</a></li>
+              {% endif %}
           </ul>
           
           <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Belépés</a></li>
-              <li><a href="#">Regisztráció</a></li>
+            {% if currentUser %}
+              <li class="navbar-text">Üdv, {{ currentUser.username }}!</li>
+              <li><a href="/logout">Kilépés</a></li>
+            {% else %}
+              <li><a href="/login">Belépés</a></li>
+              <li><a href="/register">Regisztráció</a></li>
+            {% endif %}
           </ul>
           </div>
       </div>
