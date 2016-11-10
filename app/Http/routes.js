@@ -13,6 +13,7 @@ Route.get('/recipes/:id/edit', 'RecipeController.edit').middleware('auth')
 Route.post('/recipes/:id/edit', 'RecipeController.doEdit').middleware('auth')
 Route.get('/recipes/:id/delete', 'RecipeController.doDelete').middleware('auth')
 Route.get('/recipes/:id', 'RecipeController.show')
+Route.get('/recipes', 'RecipeController.search')
 
 Route.get('/register', 'UserController.register')
 Route.get('/login', 'UserController.login')

@@ -13,10 +13,10 @@
 </pre>
 
 {% if (recipe.user_id == currentUser.id) %}
-<a href="/recipe/{{ recipe.id }}/edit" class="btn btn-default">
+<a href="/recipes/{{ recipe.id }}/edit" class="btn btn-default">
     Szerkeszt
 </a>
-<a href="/recipe/{{ recipe.id }}/delete" class="btn btn-danger">
+<a href="/recipes/{{ recipe.id }}/delete" class="btn btn-danger">
     Töröl
 </a>
 {% endif %}
