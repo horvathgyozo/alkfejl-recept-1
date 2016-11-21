@@ -1,5 +1,10 @@
 {% extends "layout" %}
 
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.5/validator.min.js"></script>
+<script src="/scripts/smart_ingredients.js"></script>
+{% endblock %}
+
 {% block content %}
 <h2>Recept módosítása</h2>
 
@@ -19,7 +24,9 @@
 {% endif %}
 
 
-<form class="form-horizontal" method="post">
+<form class="form-horizontal" method="post"
+  data-toggle="validator"
+>
 
   {{ csrfField }}
 
@@ -32,7 +39,11 @@
   <div class="form-group">
     <label for="ingredients" class="col-lg-2 control-label">Hozzávalók</label>
     <div class="col-lg-10">
+
+      
+
       <textarea class="form-control" rows="3" id="ingredients" name="ingredients">{{ recipe.ingredients }}</textarea>
+
       <span class="help-block">Hozzávalók</span>
     </div>
   </div>
