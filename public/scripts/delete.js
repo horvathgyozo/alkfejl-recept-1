@@ -19,12 +19,20 @@ function my_confirm(str) {
   let _resolve, _reject
 
   const $modal = $('.confirm-modal')
+  const $btnOk = $modal.find('.modal-ok')
+  const $btnCancel = $modal.find('.modal-cancel')
   $modal.modal('show')
 
-  $modal.find('.modal-ok').on('click', function (e) {
+  // először vegyük le az esetlegesen előzőleg felregisztrált kezelőt,
+  // különben második, stb. confirmkor az előzőek is lefutnak ismét
+  // (ha majd esetleg listázó oldalon is használjuk a my_confirm-öt)
+  $btnOk.off('click')
+  $btnOk.on('click', function (e) {
     _resolve(true)
   })
-  $modal.find('.modal-cancel').on('click', function (e) {
+
+  $btnCancel.off('click')
+  $btnCancel.on('click', function (e) {
     _resolve(false)
   })
 
